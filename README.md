@@ -1,0 +1,2 @@
+# terraform-automatedInfrastructure
+Automated Infrastructure Provisioning with Terraform

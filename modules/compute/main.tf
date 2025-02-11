@@ -3,7 +3,7 @@ resource "aws_launch_template" "frontend_launch_template" {
   name = var.name_fe-asg
   image_id = var.image_id
   instance_type = var.instance_type
-  vpc_security_group_ids = ["${aws_security_group.frontend_asg_sg.id}"]
+  vpc_security_group_ids = ["${var.frontend_asg_sg_id}"]
 }
 
 # Create an autoscaling group for frontend instances
@@ -17,9 +17,9 @@ resource "aws_autoscaling_group" "frontend_asg" {
   max_size = var.max_size
   desired_capacity = var.desired_capacity
   vpc_zone_identifier = [
-    aws_subnet.public_subnet_1_frontend.id,
-    aws_subnet.public_subnet_2_frontend.id,
-    aws_subnet.public_subnet_3_frontend.id
+    var.public_subnet_1_frontend_id,
+    var.public_subnet_2_frontend_id,
+    var.public_subnet_3_frontend_id
   ]
 }
 
@@ -28,7 +28,7 @@ resource "aws_launch_template" "backend_launch_template" {
   name = var.name_be-lt
   image_id = var.image_id
   instance_type = var.instance_type
-  vpc_security_group_ids = ["${aws_security_group.backend_asg_sg.id}"]
+  vpc_security_group_ids = ["${var.backend_asg_sg_id}"]
 }
 
 # Create an autoscaling group for backend instances
@@ -42,9 +42,9 @@ resource "aws_autoscaling_group" "backend_asg" {
   max_size = var.max_size
   desired_capacity = var.desired_capacity
   vpc_zone_identifier = [
-    aws_subnet.private_subnet_1_backend.id,
-    aws_subnet.private_subnet_2_backend.id,
-    aws_subnet.private_subnet_3_backend.id
+    var.private_subnet_1_backend_id,
+    var.private_subnet_2_backend_id,
+    var.private_subnet_3_backend_id
   ]
 }
 
@@ -53,7 +53,7 @@ resource "aws_launch_template" "database_launch_template" {
   name = var.name_db_lt
   image_id = var.image_id
   instance_type = var.instance_type
-  vpc_security_group_ids = ["${aws_security_group.rds_sg.id}"]
+  vpc_security_group_ids = ["${var.rds_sg_id}"]
 }
 
 # Create an autoscaling group for database instances
@@ -67,9 +67,9 @@ resource "aws_autoscaling_group" "database_asg" {
   max_size = var.max_size
   desired_capacity = var.desired_capacity
   vpc_zone_identifier = [
-    aws_subnet.private_subnet_1_database.id,
-    aws_subnet.private_subnet_2_database.id,
-    aws_subnet.private_subnet_3_database.id
+    var.private_subnet_1_database_id,
+    var.private_subnet_2_database_id,
+    var.private_subnet_3_database_id
   ]
 }
 
@@ -78,11 +78,11 @@ resource "aws_lb" "frontend_lb" {
   name = var.name-fe-lb
   internal = false
   load_balancer_type = "application"
-  security_groups = [aws_security_group.frontend_lb_sg.id]
+  security_groups = [var.frontend_lb_sg_id]
   subnets = [
-    aws_subnet.public_subnet_1_frontend.id,
-    aws_subnet.public_subnet_2_frontend.id,
-    aws_subnet.public_subnet_3_frontend.id
+    var.public_subnet_1_frontend_id,
+    var.public_subnet_2_frontend_id,
+    var.public_subnet_3_frontend_id
   ]
 }
 
@@ -92,11 +92,11 @@ resource "aws_lb" "backend_lb" {
   name = var.name-be-lb
   internal = true
   load_balancer_type = "application"
-  security_groups = [aws_security_group.backend_lb_sg.id]
+  security_groups = [var.backend_lb_sg_id]
   subnets = [
-    aws_subnet.private_subnet_1_backend.id,
-    aws_subnet.private_subnet_2_backend.id,
-    aws_subnet.private_subnet_3_backend.id
+    var.private_subnet_1_backend_id,
+    var.private_subnet_2_backend_id,
+    var.private_subnet_3_backend_id
   ]
 }
 

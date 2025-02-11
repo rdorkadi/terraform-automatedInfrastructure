@@ -63,3 +63,13 @@ variable "to_port_rds" {
     type        = number
     default     = 3306
 }
+
+variable "vpc_id" {
+    description = "The ID of the VPC"
+    type        = string
+}
+
+variable "vpc_cidr_block" {
+    description = "The CIDR block of the VPC"
+    type        = string
+}

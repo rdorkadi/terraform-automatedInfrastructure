@@ -76,3 +76,75 @@ variable "name-be-lb" {
     default = "backend-lb"
 }
 
+variable "frontend_asg_sg_id" {
+  description = "The ID of the security group for the frontend autoscaling group"
+  type        = string
+}
+
+variable "public_subnet_1_frontend_id" {
+  description = "The ID of the public subnet 1"
+  type        = string
+}
+
+variable "public_subnet_2_frontend_id" {
+  description = "The ID of the public subnet 2"
+  type        = string
+}
+
+variable "public_subnet_3_frontend_id" {
+  description = "The ID of the public subnet 3"
+  type        = string
+}
+
+variable "backend_asg_sg_id" {
+  description = "The ID of the security group for the backend autoscaling group"
+  type        = string
+}
+
+variable "private_subnet_1_backend_id" {
+  description = "The ID of the private subnet 1"
+  type        = string
+}
+
+variable "private_subnet_2_backend_id" {
+  description = "The ID of the private subnet 2"
+  type        = string
+}
+
+variable "private_subnet_3_backend_id" {
+  description = "The ID of the private subnet 3"
+  type        = string
+}
+
+variable "rds_sg_id" {
+  description = "The ID of the security group for the RDS instance"
+  type        = string
+}
+
+variable "private_subnet_1_database_id" {
+  description = "The ID of the private subnet 1"
+  type        = string
+}
+
+variable "private_subnet_2_database_id" {
+  description = "The ID of the private subnet 2"
+  type        = string
+}
+
+variable "private_subnet_3_database_id" {
+  description = "The ID of the private subnet 3"
+  type        = string
+}
+
+variable "frontend_lb_sg_id" {
+  description = "The ID of the security group for the frontend load balancer"
+  type        = string
+}
+
+variable "backend_lb_sg_id" {
+  description = "The ID of the security group for the backend load balancer"
+  type        = string
+}
+
+
+

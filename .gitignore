@@ -1,6 +1,7 @@
 # Terraform state files
 *.tfstate
 *.tfstate.backup
+*.terraform.tfstate.lock.info
 
 # Crash logs
 crash.log
